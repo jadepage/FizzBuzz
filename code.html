@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>DBL BULLSEYE: A Coding Project By Jade Page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="icon" type="image/png" href="/img/favicon-32x32.png">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!-- === Nav Section === -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="/img/faviconwhite.png" class="d-inline-block align-text-top"
+                    width="28" height="24">DBL BULLSEYE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class=" nav-item">
+                        <a class="nav-link" href="app.html">The App</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://github.com/jadepage/DBLBullseye">Git Repo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://jadepageportfolio.netlify.app/">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- === Main Section === -->
+    <main class="flex-shrink-0">
+        <div class="container col-xxl-8 py-4 px-5 mt-5">
+            <h2 class="border-1 border-bottom border-dark">The Code for DBL BULLSEYE.</h2>
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col-lg-8">
+                    <pre class="line-numbers">
+                    <code class="language-javascript">
+                        // get the values form the Page
+// start or controller function
+function getValues() {
+    // get values from the page
+    let startValue = document.getElementById('startValue').value;
+    let endValue = document.getElementById('endValue').value;
+
+    // need to validate input
+    // parse into Integers
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        // call generateNumbers
+        let numbers = generateNumbers(startValue, endValue);
+         // call displayNumbers 
+        displayNumbers(numbers);
+
+    } else {
+        alert("You must enter integers");
+    }
+}
+
+// generate numbers from startValue to the endValue
+// logic function(s)
+function generateNumbers(sValue, eValue) {
+
+    let numbers = [];
+
+    // get all numbers from start to end
+    for (let index = sValue; index <= eValue; index++) {  
+        // this will execute in a loop until index = eValue
+        numbers.push(index); 
+    }
+
+    return numbers;
+}
+
+// display the numbers and mark the even numbers bold
+// display or view functions
+function displayNumbers(numbers) {
+
+    let templateRows = "";
+    
+    for (let index = 0; index < numbers.length; index++) {
+
+       let className = "even";
+       let number = numbers[index];
+
+       if(number % 2 == 0) {
+        className = "even";
+       }
+       else {
+        className = "odd";
+       }
+
+       /* This does not render correctly with Prism, 
+       see the source code or repo */
+       templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+    }
+    
+    document.getElementById('results').innerHTML = templateRows;
+}
+
+                    </code>
+                </pre>
+                </div>
+                <div class="col-lg-4">
+                    <p>The Code is structured in multiple functions.</p>
+                    <!-- Get Values Function -->
+                    <h5>getValues Function</h5>
+                    <p>This function is the starting or controller function.
+                    </p>
+                    <p>The function gets inputs from a user, when
+                        the inputs have been submitted, the values are converted to integer values.</p>
+                    <p>The inputs are then validated and if they are integers then the program continues but if not
+                        then an error is displayed to the user.</p>
+                    <!-- generateNumbers Function -->
+                    <h5>generateNumbers Function</h5>
+                    <p>This function is the logic function.
+                    </p>
+                    <p>The function is passed the starting value and ending value that the user has entered.</p>
+                    <p>The function then executes in a loop until the index = end value. The numbers between the
+                        starting value and ending value are stored in an array.</p>
+                    <!-- displayNumbers Function -->
+                    <h5>displayNumbers Function</h5>
+                    <p>This function is used for displaying the results to the user.
+                    </p>
+                    <p>The array is passed to the function as a parameter. A variable called templateRows is created
+                        which will be used as a html template.
+                    </p>
+                    <p>A for loop is then used to check if the number is even or
+                        odd. If the number is even then it gets a class of even (Will make the number display bold) and
+                        if it's
+                        odd then it's given a class
+                        of odd (Will make the number display normally).</p>
+                    <p>Finally the template rows will be inserted into the table body with the id of results</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- === Footer Section === -->
+    <footer class="footer mt-auto py-3">
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-lg-3 gy-2">
+                <div
+                    class="col order-last order-lg-first text-light d-flex justify-content-center justify-content-lg-start">
+                    <div>
+                        <span class="text-muted">&copy;2021</span>
+                        Jade Page | hello@jadepage.co.uk
+                    </div>
+                </div>
+                <div class="col d-flex align-items-center justify-content-center">
+                    <img src="/img/whitelogo.png" alt="Jade Page Logo" height="24">
+                </div>
+                <div class="col d-flex align-items-center justify-content-center justify-content-lg-end">
+                    <div class="row">
+                        <div class="col social"><a href="https://www.linkedin.com/in/jade-page-609a10159/"
+                                target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></div>
+                        <div class="col social"><a href="https://github.com/jadepage" target="_blank"><i
+                                    class="fab fa-github fa-2x"></i></a>
+                        </div>
+                        <div class="col social"><a href="https://www.facebook.com/jadejpage/" target="_blank"><i
+                                    class="fab fa-facebook fa-2x"></i></a></div>
+                        <div class="col social">
+                            <a href="https://twitter.com/jadejpage" target="_blank"><i
+                                    class="fab fa-twitter fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+    <script src="js/prism.js"></script>
+    <script>
+        Prism.plugins.NormalizeWhitespace.setDefaults({
+            'remove-trailing': true,
+            'remove-indent': true,
+            'left-trim': true,
+            'right-trim': true
+        })
+    </script>
+</body>
+
+</html>
