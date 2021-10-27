@@ -10,7 +10,7 @@ body {
 }
 
 nav {
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
 }
 
 footer {
@@ -51,6 +51,19 @@ main>.container {
     color: var(--secondary-color);
 }
 
+.Fizz {
+    color: darkgreen
+}
+
+.Buzz {
+    color: darkblue
+}
+
+.FizzBuzz {
+    color: red;
+    font-weight: bold;
+}
+
 code[class*="language-"],
 pre[class*="language-"] {
     white-space: pre-wrap;
@@ -58,11 +71,11 @@ pre[class*="language-"] {
     word-wrap: break-word;
 }
 
-.odd {
-    font-weight: 100;
+.normal {
+    color: var(--dark-color);
 }
 
-.even {
+.fizzbuzz {
     font-weight: bold;
     font-size: large;
     color: var(--primary-color);
@@ -70,6 +83,7 @@ pre[class*="language-"] {
 
 footer {
     padding-right: 1rem;
+    background-color: var(--primary-color);
 }
 
 footer .social>a {

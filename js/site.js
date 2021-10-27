@@ -2,60 +2,86 @@
 // start or controller function
 function getValues() {
     // get values from the page
-    let startValue = document.getElementById('startValue').value;
-    let endValue = document.getElementById('endValue').value;
+    let fizzValue = document.getElementById('startValue').value;
+    let buzzValue = document.getElementById('endValue').value;
 
     // need to validate input
     // parse into Integers
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
+    fizzValue = parseInt(fizzValue);
+    buzzValue = parseInt(buzzValue);
 
-    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
-        // call generateNumbers
-        let numbers = generateNumbers(startValue, endValue);
+    if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)) {
+        // call fizzBuzz
+        let fbArray = fizzBuzz(fizzValue, buzzValue);
          // call displayNumbers 
-        displayNumbers(numbers);
-
+        displayData(fbArray);
     } else {
         alert("You must enter integers");
     }
 }
 
+
 // generate numbers from startValue to the endValue
 // logic function(s)
-function generateNumbers(sValue, eValue) {
+function fizzBuzz(fizzValue, buzzValue) {
 
-    let numbers = [];
+    let returnArray = [];
 
-    // get all numbers from start to end
-    for (let index = sValue; index <= eValue; index++) {  
-        // this will execute in a loop until index = eValue
-        numbers.push(index); 
+
+    // loop from 1 to 100
+    for (let i = 1; i <= 100; i++) {
+
+        // Check if values are divisible by 3 and 5
+        if(i % fizzValue == 0 && i % buzzValue == 0){
+            returnArray.push('FizzBuzz')
+        // Check if values are divisible by 3
+        } else if (i % fizzValue == 0) {
+            returnArray.push('Fizz');
+         // Check if values are divisible by 5
+        } else if (i % buzzValue == 0) {
+            returnArray.push('Buzz');
+        } else {
+            returnArray.push(i);
+        }
     }
-
-    return numbers;
+    return returnArray;
 }
 
-// display the numbers and mark the even numbers bold
-// display or view functions
-function displayNumbers(numbers) {
-
-    let templateRows = "";
+// display or view function
+// loop over the array and create a tablerow for each item
+function displayData(fbArray) {
     
-    for (let index = 0; index < numbers.length; index++) {
+    // get the table body element from the page
+    let tableBody = document.getElementById('results');
 
-       let className = "even";
-       let number = numbers[index];
+    // get the templates row
+    let templateRow = document.getElementById('fbTemplate');
 
-       if(number % 2 == 0) {
-        className = "even";
-       }
-       else {
-        className = "odd";
-       }
+    // clear table first
+    tableBody.innerHTML = "";
 
-       templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+    for (let i = 0; i < fbArray.length; i += 5) {
+       
+        let tableRow = document.importNode(templateRow.content, true); 
+
+        // grab the td's and put into array
+        let rowCols = tableRow.querySelectorAll('td');
+
+        rowCols[0].classList.add(fbArray[i]);
+        rowCols[0].textContent = fbArray[i];
+
+        rowCols[1].classList.add(fbArray[i + 1]);
+        rowCols[1].textContent = fbArray[i+1];
+
+        rowCols[2].classList.add(fbArray[i + 2]);
+        rowCols[2].textContent = fbArray[i+2];
+
+        rowCols[3].classList.add(fbArray[i + 3]);
+        rowCols[3].textContent = fbArray[i+3];
+
+        rowCols[4].classList.add(fbArray[i + 4]);
+        rowCols[4].textContent = fbArray[i+4];
+
+        tableBody.appendChild(tableRow);
     }
-
-    document.getElementById('results').innerHTML = templateRows;
 }
