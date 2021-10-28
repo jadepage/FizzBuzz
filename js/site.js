@@ -61,12 +61,14 @@ function displayData(fbArray) {
     tableBody.innerHTML = "";
 
     for (let i = 0; i < fbArray.length; i += 5) {
-       
+
+        // gran the temaplte that was created    
         let tableRow = document.importNode(templateRow.content, true); 
 
         // grab the td's and put into array
         let rowCols = tableRow.querySelectorAll('td');
 
+        // populate each row with the relevant data from the array
         rowCols[0].classList.add(fbArray[i]);
         rowCols[0].textContent = fbArray[i];
 
